@@ -62,8 +62,8 @@ def download(filetype):
     # return json.dumps(json.loads(data),indent=2)
     return jsonify({"Success":"File downloaded successfully"})
 
-@app.route('/update/',methods=['GET'])
-def update():
+@app.route('/insert/',methods=['GET'])
+def insert():
     client=pymongo.MongoClient(cred)
     db=client['text_db5']
     col=db['column_1']
