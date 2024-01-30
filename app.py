@@ -16,7 +16,7 @@ def upload(filepath):
     elif Path(filepath).suffix == '.csv':
         df=pd.read_csv(filepath)
     else:
-        return jsonify({"Failure":"Invalid File Format"})
+        return jsonify({"Failure":"Invalid File Format."})
 
     client=pymongo.MongoClient(cred)
     db=client['text_db5']
@@ -36,9 +36,9 @@ def upload(filepath):
     try:
         x = col.insert_many(data)
     except:
-        return jsonify({"Failure":"File upload failed"})
+        return jsonify({"Failure":"File upload failed."})
     # return json.dumps(json.loads(data),indent=2)
-    return jsonify({"Success":"File uploaded successfully"})
+    return jsonify({"Success":"File uploaded successfully."})
 
 
 @app.route('/download/<filetype>',methods=['GET'])
@@ -57,10 +57,10 @@ def download(filetype):
         filepath=str(Path.home() / "Downloads" / 'aqeeqio.csv')
         downdf.to_csv(filepath)
     else:
-        return jsonify({"Failure":"Invalid File Format"})
+        return jsonify({"Failure":"Invalid File Format."})
     print(filepath)
     # return json.dumps(json.loads(data),indent=2)
-    return jsonify({"Success":"File downloaded successfully"})
+    return jsonify({"Success":"File downloaded successfully."})
 
 @app.route('/insert/',methods=['GET'])
 def insert():
@@ -83,6 +83,27 @@ def insert():
     try:
         col.update_one(s_query,new_value)
     except:
-        return jsonify({"Failure":"Record update failed"})
+        return jsonify({"Failure":"Record insertion failed."})
 
-    return jsonify({"Success":"Record updated successfully"})
+    return jsonify({"Success":"Record inserted successfully."})
+
+@app.route('/update/',methods=['GET'])
+def update():
+    client=pymongo.MongoClient(cred)
+    db=client['text_db5']
+    col=db['column_1']
+
+    argdict=dict(request.args)
+    try:
+        col.update_one(
+            {"_id": int(argdict['_id']),
+                "tags.id": argdict['id']
+                },
+            {"$set": {"tags.$.aspect": argdict['aspect'],
+                        "tags.$.sentiment": argdict['sentiment']
+                        }
+                }
+            )
+    except:
+        return jsonify({"Failure":"Record updation failed."})
+    return jsonify({"Success":"Record updated successfully."})
