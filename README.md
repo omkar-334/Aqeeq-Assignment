@@ -38,6 +38,7 @@ pip install -r requirements.txt
 **\<filepath\>** - Replace this with the path of the file  
 **Functionality** - uploading Excel/CSV files  
 The file should atleast contain one column - "texts", consisting of unlabeled text records.  
+*Note - Any name can be used for the column, but it will be assigned 'texts' while inserting data into the database.*
 It may contain another column - 'tags', consisting of an array of tags. If not present, the column is added with an empty array in each row.  
 The ID of the next record in the database is obtained and then assigned consecutively to current records.  
   

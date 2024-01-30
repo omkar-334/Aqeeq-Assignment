@@ -26,7 +26,10 @@ def upload(filepath):
 
     df['_id']=list(range(curr_id,len(df)+curr_id))
     if 'tags' not in df:
+        df.columns=['text']
         df['tags'] = np.empty((len(df), 0)).tolist()
+    else:
+        df.columns=['text','tags']
     df=df[['_id','text','tags']]
 
     data=json.loads(df.to_json(orient="records"))
