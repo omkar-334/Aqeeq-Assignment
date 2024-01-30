@@ -17,16 +17,16 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### Project Details 
-Language Used - Python 3.9 
-API Framework - Flask 
-Database - MongoDB 
-Additional Libraries - Pandas, Numpy 
+### Project Details  
+Language Used - Python 3.9  
+API Framework - Flask  
+Database - MongoDB  
+Additional Libraries - Pandas, Numpy  
 
 ### API Endpoints 
 
-##### /upload/<filepath> 
-Functionality - uploading Excel/CSV files 
-The file should atleast contain one column - "texts", consisting of unlabeled text records. 
-It may contain another column - 'tags', consisting of arrays of tags. If not present, the column is added. 
-The ID of the next record in the database is obtained and then assigned consecutively to current records. 
+##### /upload/<filepath>  
+Functionality - uploading Excel/CSV files  
+The file should atleast contain one column - "texts", consisting of unlabeled text records.  
+It may contain another column - 'tags', consisting of arrays of tags. If not present, the column is added.  
+The ID of the next record in the database is obtained and then assigned consecutively to current records.  
