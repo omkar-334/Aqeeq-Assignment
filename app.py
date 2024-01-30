@@ -40,7 +40,24 @@ def upload(filepath):
 
 @app.route('/download/<filetype>',methods=['GET'])
 def download(filetype):
-    pass
+
+    client=pymongo.MongoClient(cred)
+    db=client['text_db5']
+    col=db['column_1']
+
+    downdf=pd.DataFrame(col.find())
+
+    if filetype == 'xlsx':
+        filepath=str(Path.home() / "Downloads" / 'aqeeqio.xlsx')
+        downdf.to_excel(filepath)
+    elif filetype == 'csv':
+        filepath=str(Path.home() / "Downloads" / 'aqeeqio.csv')
+        downdf.to_csv(filepath)
+    else:
+        return jsonify({"Failure":"Invalid File Format"})
+    print(filepath)
+    # return json.dumps(json.loads(data),indent=2)
+    return jsonify({"Success":"File downloaded successfully"})
 
 @app.route('/update/',methods=['GET'])
 def update():
