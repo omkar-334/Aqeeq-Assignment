@@ -1,0 +1,1 @@
+mongodb+srv://trial_user:rojaBLQf1AvBk9go@aqeeq.efcduuy.mongodb.net/?retryWrites=true&w=majority
