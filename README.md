@@ -25,7 +25,7 @@ Additional Libraries - Pandas, Numpy
 
 ### API Endpoints 
 
-##### /upload/<filepath>  
+##### /upload/\<filepath\>  
 Functionality - uploading Excel/CSV files  
 The file should atleast contain one column - "texts", consisting of unlabeled text records.  
 It may contain another column - 'tags', consisting of arrays of tags. If not present, the column is added.  
