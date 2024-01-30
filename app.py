@@ -61,4 +61,25 @@ def download(filetype):
 
 @app.route('/update/',methods=['GET'])
 def update():
-    pass
+    client=pymongo.MongoClient(cred)
+    db=client['text_db5']
+    col=db['column_1']
+
+    argdict=dict(request.args)
+    _id=int(argdict['_id'])
+    del argdict['_id']
+
+    s_query={"_id":_id}
+    p_query={'_id':0,'tags':1}
+    result=col.find_one(s_query,p_query)
+
+    tags=result['tags']
+    tags.append(argdict)
+    new_value={"$set":{"tags":tags}}
+
+    try:
+        col.update_one(s_query,new_value)
+    except:
+        return jsonify({"Failure":"Record update failed"})
+
+    return jsonify({"Success":"Record updated successfully"})
