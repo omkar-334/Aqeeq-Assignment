@@ -3,7 +3,7 @@
 1. Clone the repository or download as zip and extract it.  
   
 ```  
-git clone https://github.com/omkar-334/Aqeeq-Assignment.git Aqeeq  
+git clone https://github.com/omkar-334/MongoDB-API.git  
 ```  
   
 2. Create a virtual environment  
